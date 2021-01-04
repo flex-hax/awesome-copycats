@@ -113,8 +113,8 @@ theme.cal = lain.widget.cal({
 })
 
 -- Mail IMAP check
---[[local mailicon = wibox.widget.imagebox(theme.widget_mail)
- commented because it needs to be set before use
+local mailicon = wibox.widget.imagebox(theme.widget_mail)
+--[[ commented because it needs to be set before use
 mailicon:buttons(my_table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
 theme.mail = lain.widget.imap({
     timeout  = 180,
@@ -134,7 +134,6 @@ theme.mail = lain.widget.imap({
 --]]
 
 -- MPD
---[[
 local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
 local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(my_table.join(
@@ -169,7 +168,7 @@ theme.mpd = lain.widget.mpd({
         widget:set_markup(markup.font(theme.font, markup("#EA6F81", artist) .. title))
     end
 })
---]]
+
 -- MEM
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
@@ -206,7 +205,6 @@ theme.fs = lain.widget.fs({
 --]]
 
 -- Battery
---[[
 local baticon = wibox.widget.imagebox(theme.widget_battery)
 local bat = lain.widget.bat({
     settings = function()
@@ -227,7 +225,6 @@ local bat = lain.widget.bat({
         end
     end
 })
---]]
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
@@ -267,19 +264,6 @@ local net = lain.widget.net({
                           markup("#46A8C3", " " .. string.format("%06.1f", net_now.sent) .. " ")))
     end
 })
-
--- Weather
-   local weathericon = wibox.widget.imagebox(theme.widget_weather)
-   theme.weather = lain.widget.weather({
-       city_id = 2867714, -- (Munich)
-       notification_preset = { font = "Terminus 10", fg = theme.fg_normal },
-       weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
-       settings = function()
-           descr = weather_now["weather"][1]["description"]:lower()
-           units = math.floor(weather_now["main"]["temp"])
-           widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
-       end
-   })
 
 -- Separators
 local spr     = wibox.widget.textbox(' ')
